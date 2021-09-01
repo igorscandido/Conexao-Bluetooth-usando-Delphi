@@ -1,0 +1,76 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 0
+  Top = 0
+  Caption = 'Controle'
+  ClientHeight = 480
+  ClientWidth = 600
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = xFFFFBA06
+    Size.Width = 600.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    object btnMenu: TButton
+      Align = Left
+      Size.Width = 80.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'detailstoolbuttonbordered'
+      TabOrder = 0
+    end
+    object Label1: TLabel
+      Align = Center
+      StyledSettings = [Family, FontColor]
+      Size.Width = 192.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'Controle Bluetooth'
+      TabOrder = 1
+    end
+  end
+  object MultiView1: TMultiView
+    MasterButton = btnMenu
+    Mode = Drawer
+    NavigationPaneOptions.CollapsedWidth = 73.000000000000000000
+    Size.Width = 250.000000000000000000
+    Size.Height = 430.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 250.000000000000000000
+      Size.Height = 430.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'transparentlistboxstyle'
+      TabOrder = 0
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 250.000000000000000000
+      Viewport.Height = 390.000000000000000000
+      object ListBoxHeader1: TListBoxHeader
+        Size.Width = 250.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Label2: TLabel
+          Align = Client
+          StyledSettings = [Family, Style, FontColor]
+          Size.Width = 250.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 18.000000000000000000
+          Text = 'Configura'#231#245'es'
+          TabOrder = 1
+        end
+      end
+    end
+  end
+end
