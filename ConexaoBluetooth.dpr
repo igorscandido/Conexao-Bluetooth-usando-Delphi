@@ -3,12 +3,12 @@ program ConexaoBluetooth;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  frmPrincipalU in 'frmPrincipalU.pas' {Form1};
+  frmPrincipalU in 'frmPrincipalU.pas' {frmPrincipal};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.Run;
 end.
