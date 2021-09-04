@@ -26,7 +26,6 @@ object frmPrincipal: TfrmPrincipal
       Align = Center
       AutoSize = True
       StyledSettings = [Family, FontColor]
-      Margins.Left = -45.000000000000000000
       Size.Width = 192.000000000000000000
       Size.Height = 27.000000000000000000
       Size.PlatformDefault = False
