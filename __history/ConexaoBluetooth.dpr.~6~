@@ -1,0 +1,20 @@
+program ConexaoBluetooth;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  frmPrincipalU in 'frmPrincipalU.pas' {frmPrincipal},
+  frmChatU in 'frmChatU.pas' {Form1},
+  frmDescobertaU in 'frmDescobertaU.pas' {frmDescoberta},
+  frmPareadosU in 'frmPareadosU.pas' {frmPareados};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmDescoberta, frmDescoberta);
+  Application.CreateForm(TfrmPareados, frmPareados);
+  Application.Run;
+end.

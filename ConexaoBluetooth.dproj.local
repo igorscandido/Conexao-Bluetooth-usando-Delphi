@@ -2,11 +2,21 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2021/08/31 20:57:04.000.243,=C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/08/31 20:59:45.000.628,C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmPrincipalU.fmx=C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Unit1.fmx</Transaction>
-    <Transaction>2021/08/31 20:59:45.000.628,C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmPrincipalU.pas=C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/08/31 20:59:55.000.361,C:\Users\Igor\Documents\Development\Conexão Bluetooth\ConexaoBluetooth.dproj=C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2021/09/03 20:07:49.742,=C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.pas</Transaction>
-    <Transaction>2021/09/03 20:07:55.169,C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmChatU.pas=C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.pas</Transaction>
-    <Transaction>2021/09/03 20:07:55.169,C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmChatU.fmx=C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.fmx</Transaction>
+    <Transaction>2021/08/31 20:59:45.000.628,C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmPrincipalU.fmx</Transaction>
+    <Transaction>2021/08/31 20:59:45.000.628,C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmPrincipalU.pas</Transaction>
+    <Transaction>2021/08/31 20:59:55.000.361,C:\Users\Igor\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Igor\Documents\Development\Conexão Bluetooth\ConexaoBluetooth.dproj</Transaction>
+    <Transaction>2021/09/03 20:07:49.000.742,=C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.pas</Transaction>
+    <Transaction>2021/09/03 20:07:55.000.169,C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.pas=C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmChatU.pas</Transaction>
+    <Transaction>2021/09/03 20:07:55.000.169,C:\Users\Igor\Documents\Development\Conexão Bluetooth\Unit1.fmx=C:\Users\Igor\Documents\Development\Conexão Bluetooth\frmChatU.fmx</Transaction>
+    <Transaction>2021/09/06 21:39:38.000.727,=C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmDescobertaU.pas</Transaction>
+    <Transaction>2021/09/08 19:51:12.000.518,=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.pas</Transaction>
+    <Transaction>2021/09/08 19:51:19.000.049,C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.pas=C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmPareadosU.pas</Transaction>
+    <Transaction>2021/09/08 19:51:19.000.049,C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.fmx=C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmPareadosU.fmx</Transaction>
+    <Transaction>2021/09/09 11:10:30.527,=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.pas</Transaction>
+    <Transaction>2021/09/09 11:10:37.167,C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmServicosU.fmx=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.fmx</Transaction>
+    <Transaction>2021/09/09 11:10:37.167,C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmServicosU.pas=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit2.pas</Transaction>
+    <Transaction>2021/09/09 17:16:23.142,=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit3.pas</Transaction>
+    <Transaction>2021/09/09 17:16:29.282,C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmWindowsU.fmx=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit3.fmx</Transaction>
+    <Transaction>2021/09/09 17:16:29.282,C:\Users\Igor\Documents\Development\Bluetooth - Slides\frmWindowsU.pas=C:\Users\Igor\Documents\Development\Bluetooth - Slides\Unit3.pas</Transaction>
   </Transactions>
 </BorlandProject>

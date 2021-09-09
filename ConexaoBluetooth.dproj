@@ -197,6 +197,22 @@
             <Form>Form1</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="frmDescobertaU.pas">
+            <Form>frmDescoberta</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="frmPareadosU.pas">
+            <Form>frmPareados</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="frmServicosU.pas">
+            <Form>Form2</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="frmWindowsU.pas">
+            <Form>frmWindows</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
