@@ -19,6 +19,7 @@ object frmWindows: TfrmWindows
       Size.Width = 80.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
+      StyleLookup = 'priortoolbutton'
       TabOrder = 0
       Text = 'Button1'
     end
@@ -40,8 +41,46 @@ object frmWindows: TfrmWindows
       Size.Width = 80.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
+      StyleLookup = 'playtoolbutton'
       TabOrder = 2
       Text = 'Button2'
     end
+  end
+  object Layout1: TLayout
+    Align = Top
+    Position.Y = 50.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label2: TLabel
+      Align = Left
+      Size.Width = 120.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dispositivo:'
+      TabOrder = 0
+    end
+    object cbDispositivo: TComboBox
+      Align = Client
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 515.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Top
+    Position.Y = 100.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 380.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 376.000000000000000000
   end
 end

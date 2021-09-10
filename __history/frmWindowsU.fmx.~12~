@@ -61,12 +61,26 @@ object frmWindows: TfrmWindows
       Text = 'Dispositivo:'
       TabOrder = 0
     end
-    object ComboBox1: TComboBox
+    object cbDispositivo: TComboBox
       Align = Client
-      Size.Width = 520.000000000000000000
-      Size.Height = 50.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 515.000000000000000000
+      Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
     end
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Top
+    Position.Y = 100.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 165.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 161.000000000000000000
   end
 end

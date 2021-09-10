@@ -53,5 +53,22 @@ object frmWindows: TfrmWindows
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    object Label2: TLabel
+      Align = Left
+      Size.Width = 120.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dispositivo:'
+      TabOrder = 0
+    end
+    object cbDispositivo: TComboBox
+      Align = Client
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 515.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
   end
 end

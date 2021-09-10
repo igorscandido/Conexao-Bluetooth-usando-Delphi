@@ -3,7 +3,7 @@ object frmWindows: TfrmWindows
   Top = 0
   Caption = 'Form3'
   ClientHeight = 480
-  ClientWidth = 667
+  ClientWidth = 640
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -11,12 +11,12 @@ object frmWindows: TfrmWindows
   object Rectangle1: TRectangle
     Align = Top
     Fill.Color = xFFFFBA06
-    Size.Width = 667.000000000000000000
+    Size.Width = 640.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     object Button1: TButton
       Align = Left
-      Size.Width = 48.000000000000000000
+      Size.Width = 80.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'priortoolbutton'
@@ -37,8 +37,8 @@ object frmWindows: TfrmWindows
     end
     object Button2: TButton
       Align = Right
-      Position.X = 619.000000000000000000
-      Size.Width = 48.000000000000000000
+      Position.X = 560.000000000000000000
+      Size.Width = 80.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'playtoolbutton'
@@ -49,7 +49,7 @@ object frmWindows: TfrmWindows
   object Layout1: TLayout
     Align = Top
     Position.Y = 50.000000000000000000
-    Size.Width = 667.000000000000000000
+    Size.Width = 640.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -65,7 +65,7 @@ object frmWindows: TfrmWindows
       Align = Client
       Margins.Top = 10.000000000000000000
       Margins.Right = 5.000000000000000000
-      Size.Width = 542.000000000000000000
+      Size.Width = 515.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -76,19 +76,19 @@ object frmWindows: TfrmWindows
     DataDetectorTypes = []
     Align = Top
     Position.Y = 100.000000000000000000
-    Size.Width = 667.000000000000000000
+    Size.Width = 640.000000000000000000
     Size.Height = 150.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
-    Viewport.Width = 663.000000000000000000
+    TabOrder = 4
+    Viewport.Width = 636.000000000000000000
     Viewport.Height = 146.000000000000000000
   end
   object GridPanelLayout1: TGridPanelLayout
     Align = Client
-    Size.Width = 667.000000000000000000
+    Size.Width = 640.000000000000000000
     Size.Height = 230.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 5
     ColumnCollection = <
       item
         Value = 50.000000000000000000
@@ -99,22 +99,22 @@ object frmWindows: TfrmWindows
     ControlCollection = <
       item
         Column = 0
-        Control = btnNavegar
+        Control = Button3
         Row = 0
       end
       item
         Column = 1
-        Control = btnMonitor
+        Control = Button4
         Row = 0
       end
       item
         Column = 0
-        Control = btnCalculadora
+        Control = Button5
         Row = 1
       end
       item
         Column = 1
-        Control = btnPC
+        Control = Button6
         Row = 1
       end>
     RowCollection = <
@@ -124,61 +124,53 @@ object frmWindows: TfrmWindows
       item
         Value = 50.000000000000000000
       end>
-    object btnNavegar: TButton
+    object Button3: TButton
       Align = Client
-      Images = frmPrincipal.ImageList1
-      ImageIndex = 3
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 323.500000000000000000
+      Size.Width = 310.000000000000000000
       Size.Height = 105.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
-      Text = 'Navegar'
+      Text = 'Button3'
     end
-    object btnMonitor: TButton
+    object Button4: TButton
       Align = Client
-      Images = frmPrincipal.ImageList1
-      ImageIndex = 2
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 323.500000000000000000
+      Size.Width = 310.000000000000000000
       Size.Height = 105.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      Text = 'Monitor Off'
+      Text = 'Button4'
     end
-    object btnCalculadora: TButton
+    object Button5: TButton
       Align = Client
-      Images = frmPrincipal.ImageList1
-      ImageIndex = 4
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 323.500000000000000000
+      Size.Width = 310.000000000000000000
       Size.Height = 105.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
-      Text = 'Calculadora'
+      Text = 'Button5'
     end
-    object btnPC: TButton
+    object Button6: TButton
       Align = Client
-      Images = frmPrincipal.ImageList1
-      ImageIndex = 0
       Margins.Left = 5.000000000000000000
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 323.500000000000000000
+      Size.Width = 310.000000000000000000
       Size.Height = 105.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
-      Text = 'Desligar PC'
+      Text = 'Button6'
     end
   end
 end

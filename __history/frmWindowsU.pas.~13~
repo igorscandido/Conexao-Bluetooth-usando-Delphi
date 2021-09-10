@@ -34,9 +34,6 @@ var
 
 implementation
 
-uses
-  frmPrincipalU;
-
 {$R *.fmx}
 
 end.

@@ -17,12 +17,7 @@ type
     Layout1: TLayout;
     Label2: TLabel;
     cbDispositivo: TComboBox;
-    memHistorico: TMemo;
-    GridPanelLayout1: TGridPanelLayout;
-    btnNavegar: TButton;
-    btnMonitor: TButton;
-    btnCalculadora: TButton;
-    btnPC: TButton;
+    Memo1: TMemo;
   private
     { Private declarations }
   public
@@ -33,9 +28,6 @@ var
   frmWindows: TfrmWindows;
 
 implementation
-
-uses
-  frmPrincipalU;
 
 {$R *.fmx}
 

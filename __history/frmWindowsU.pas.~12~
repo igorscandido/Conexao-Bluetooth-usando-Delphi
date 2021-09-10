@@ -19,10 +19,10 @@ type
     cbDispositivo: TComboBox;
     memHistorico: TMemo;
     GridPanelLayout1: TGridPanelLayout;
-    btnNavegar: TButton;
-    btnMonitor: TButton;
-    btnCalculadora: TButton;
-    btnPC: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
   private
     { Private declarations }
   public
@@ -33,9 +33,6 @@ var
   frmWindows: TfrmWindows;
 
 implementation
-
-uses
-  frmPrincipalU;
 
 {$R *.fmx}
 
