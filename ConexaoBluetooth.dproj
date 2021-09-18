@@ -206,7 +206,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="frmServicosU.pas">
-            <Form>Form2</Form>
+            <Form>frmServicos</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="frmWindowsU.pas">

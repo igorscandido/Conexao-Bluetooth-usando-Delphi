@@ -9,7 +9,7 @@ uses
   FMX.ScrollBox, FMX.Memo, FMX.ListBox, FMX.Edit;
 
 type
-  TForm1 = class(TForm)
+  TfrmChat = class(TForm)
     Rectangle1: TRectangle;
     Button1: TButton;
     Label1: TLabel;
@@ -30,7 +30,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmChat: TfrmChat;
 
 implementation
 

@@ -7,7 +7,7 @@ uses
   frmChatU in 'frmChatU.pas' {Form1},
   frmDescobertaU in 'frmDescobertaU.pas' {frmDescoberta},
   frmPareadosU in 'frmPareadosU.pas' {frmPareados},
-  frmServicosU in 'frmServicosU.pas' {Form2},
+  frmServicosU in 'frmServicosU.pas' {frmServicos},
   frmWindowsU in 'frmWindowsU.pas' {frmWindows};
 
 {$R *.res}
@@ -15,10 +15,10 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmChat, frmChat);
   Application.CreateForm(TfrmDescoberta, frmDescoberta);
   Application.CreateForm(TfrmPareados, frmPareados);
-  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TfrmServicos, frmServicos);
   Application.CreateForm(TfrmWindows, frmWindows);
   Application.Run;
 end.
