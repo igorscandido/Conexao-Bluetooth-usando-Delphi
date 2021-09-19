@@ -45,8 +45,6 @@ type
     btnEnviar: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure FormShow(Sender: TObject);
-    procedure cbDispositivoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -82,27 +80,6 @@ procedure TfrmChat.Button2Click(Sender: TObject);
 begin
   // Apaga as linhas do memo para "zerar" a conversa
   memHistorico.Lines.Clear;
-end;
-
-procedure TfrmChat.cbDispositivoChange(Sender: TObject);
-begin
-  // Grava o dispositivo selecionado na variável do device pareado
-  FDispositivo := frmPrincipal. // Formulário principal
-                  Bluetooth1.   // Componente Bluetooth
-                  // Função que lista os dispositivos pareados
-                                   // Item do ComboBox
-                  LastPairedDevices[cbDispositivo.ItemIndex];
-end;
-
-procedure TfrmChat.FormShow(Sender: TObject);
-begin
-  // Limpa o ComboBox
-  cbDispositivo.Clear;
-  // Cadastra os dispositivos pareados
-  // atualmente no ComboBox
-  for var LDispositivo in frmPrincipal.Bluetooth1.PairedDevices do begin
-    cbDispositivo.Items.Add(LDispositivo.DeviceName);
-  end;
 end;
 
 end.

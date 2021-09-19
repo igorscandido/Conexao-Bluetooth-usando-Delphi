@@ -89,7 +89,7 @@ begin
   // Grava o dispositivo selecionado na variável do device pareado
   FDispositivo := frmPrincipal. // Formulário principal
                   Bluetooth1.   // Componente Bluetooth
-                  // Função que lista os dispositivos pareados
+                  // Função que lista os dispositivo pareados
                                    // Item do ComboBox
                   LastPairedDevices[cbDispositivo.ItemIndex];
 end;

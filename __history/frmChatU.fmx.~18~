@@ -1,4 +1,4 @@
-object Form1: TForm1
+object frmChat: TfrmChat
   Left = 0
   Top = 0
   Caption = '['
@@ -22,6 +22,7 @@ object Form1: TForm1
       StyleLookup = 'priortoolbutton'
       TabOrder = 0
       Text = 'Button1'
+      OnClick = Button1Click
     end
     object Button2: TButton
       Align = Right
@@ -32,6 +33,7 @@ object Form1: TForm1
       StyleLookup = 'trashtoolbutton'
       TabOrder = 1
       Text = 'Button2'
+      OnClick = Button2Click
     end
     object Label1: TLabel
       Align = Center
@@ -52,6 +54,28 @@ object Form1: TForm1
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
+    object edtTexto: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 0
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 550.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'Enviar Texto'
+    end
+    object btnEnviar: TButton
+      Align = Right
+      Position.X = 560.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'nexttoolbutton'
+      TabOrder = 1
+      Text = 'btnEnviar'
+    end
   end
   object Layout2: TLayout
     Align = Top
@@ -60,6 +84,18 @@ object Form1: TForm1
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
+    object btnServidor: TButton
+      Align = Client
+      Margins.Left = 8.000000000000000000
+      Margins.Top = 2.000000000000000000
+      Margins.Right = 8.000000000000000000
+      Margins.Bottom = 2.000000000000000000
+      Size.Width = 624.000000000000000000
+      Size.Height = 46.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Iniciar Servidor'
+    end
   end
   object Layout3: TLayout
     Align = Top
@@ -68,14 +104,33 @@ object Form1: TForm1
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
+    object Label2: TLabel
+      Align = Left
+      Size.Width = 120.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dispositivo:'
+      TabOrder = 0
+    end
+    object cbDispositivo: TComboBox
+      Align = Client
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 515.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
   end
-  object Memo1: TMemo
+  object memHistorico: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
-    Position.X = 200.000000000000000000
-    Position.Y = 312.000000000000000000
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 280.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 5
-    Viewport.Width = 46.000000000000000000
-    Viewport.Height = 46.000000000000000000
+    Viewport.Width = 636.000000000000000000
+    Viewport.Height = 276.000000000000000000
   end
 end

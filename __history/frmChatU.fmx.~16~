@@ -7,7 +7,6 @@ object frmChat: TfrmChat
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
-  OnShow = FormShow
   DesignerMasterStyle = 0
   object Rectangle1: TRectangle
     Align = Top
@@ -23,7 +22,6 @@ object frmChat: TfrmChat
       StyleLookup = 'priortoolbutton'
       TabOrder = 0
       Text = 'Button1'
-      OnClick = Button1Click
     end
     object Button2: TButton
       Align = Right
@@ -34,7 +32,6 @@ object frmChat: TfrmChat
       StyleLookup = 'trashtoolbutton'
       TabOrder = 1
       Text = 'Button2'
-      OnClick = Button2Click
     end
     object Label1: TLabel
       Align = Center
@@ -121,7 +118,6 @@ object frmChat: TfrmChat
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      OnChange = cbDispositivoChange
     end
   end
   object memHistorico: TMemo
