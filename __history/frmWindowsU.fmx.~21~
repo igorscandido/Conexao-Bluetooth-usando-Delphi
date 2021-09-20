@@ -1,0 +1,185 @@
+object frmWindows: TfrmWindows
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 480
+  ClientWidth = 667
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = xFFFFBA06
+    Size.Width = 667.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    object Button1: TButton
+      Align = Left
+      Size.Width = 48.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'priortoolbutton'
+      TabOrder = 0
+      Text = 'Button1'
+    end
+    object Label1: TLabel
+      Align = Center
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 194.000000000000000000
+      Size.Height = 27.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.WordWrap = False
+      Text = 'Controlador Windows'
+      TabOrder = 1
+    end
+    object Button2: TButton
+      Align = Right
+      Position.X = 619.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'playtoolbutton'
+      TabOrder = 2
+      Text = 'Button2'
+      OnClick = Button2Click
+    end
+  end
+  object Layout1: TLayout
+    Align = Top
+    Position.Y = 50.000000000000000000
+    Size.Width = 667.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Label2: TLabel
+      Align = Left
+      Size.Width = 120.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Dispositivo:'
+      TabOrder = 0
+    end
+    object cbDispositivo: TComboBox
+      Align = Client
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Size.Width = 542.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+  end
+  object memHistorico: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Top
+    Position.Y = 100.000000000000000000
+    Size.Width = 667.000000000000000000
+    Size.Height = 150.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Viewport.Width = 667.000000000000000000
+    Viewport.Height = 150.000000000000000000
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Client
+    Size.Width = 667.000000000000000000
+    Size.Height = 230.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnNavegar
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnMonitor
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = btnCalculadora
+        Row = 1
+      end
+      item
+        Column = 1
+        Control = btnPC
+        Row = 1
+      end>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    object btnNavegar: TButton
+      Align = Client
+      Images = frmPrincipal.ImageList1
+      ImageIndex = 3
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 323.500000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Navegar'
+    end
+    object btnMonitor: TButton
+      Align = Client
+      Images = frmPrincipal.ImageList1
+      ImageIndex = 2
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 323.500000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Monitor Off'
+    end
+    object btnCalculadora: TButton
+      Align = Client
+      Images = frmPrincipal.ImageList1
+      ImageIndex = 4
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 323.500000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Calculadora'
+    end
+    object btnPC: TButton
+      Align = Client
+      Images = frmPrincipal.ImageList1
+      ImageIndex = 0
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 323.500000000000000000
+      Size.Height = 105.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'Desligar PC'
+    end
+  end
+end

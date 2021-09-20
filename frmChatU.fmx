@@ -76,6 +76,7 @@ object frmChat: TfrmChat
       StyleLookup = 'nexttoolbutton'
       TabOrder = 1
       Text = 'btnEnviar'
+      OnClick = btnEnviarClick
     end
   end
   object Layout2: TLayout
@@ -96,6 +97,7 @@ object frmChat: TfrmChat
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Iniciar Servidor'
+      OnClick = btnServidorClick
     end
   end
   object Layout3: TLayout

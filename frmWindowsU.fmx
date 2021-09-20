@@ -7,6 +7,7 @@ object frmWindows: TfrmWindows
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object Rectangle1: TRectangle
     Align = Top
@@ -44,6 +45,7 @@ object frmWindows: TfrmWindows
       StyleLookup = 'playtoolbutton'
       TabOrder = 2
       Text = 'Button2'
+      OnClick = Button2Click
     end
   end
   object Layout1: TLayout
@@ -69,6 +71,7 @@ object frmWindows: TfrmWindows
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
+      OnChange = cbDispositivoChange
     end
   end
   object memHistorico: TMemo

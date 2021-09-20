@@ -47,6 +47,8 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure cbDispositivoChange(Sender: TObject);
+    procedure btnServidorClick(Sender: TObject);
+    procedure btnEnviarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -72,6 +74,136 @@ implementation
 uses frmPrincipalU;
 
 {$R *.fmx}
+
+procedure TfrmChat.btnEnviarClick(Sender: TObject);
+var
+  // Variável que usaremos para converter nossa mensagem
+  // de String para código binário
+  LMsg: TBytes;
+begin
+
+  // Se dispositivo foi selecionado e ambos estão pareados/conectados.
+  if (FDispositivo <> nil) and
+     (frmPrincipal.Bluetooth1.ConnectionState=TBluetoothConnectionState.Connected) then
+    Try
+      // Faz uma conexão via socket com o outro device
+      if (FSocket=nil) then begin
+
+        // Cria um socket de cliente baseado no GUID do servico.
+        FSocket := FDispositivo.CreateClientSocket(StringToGUID(ChatGUI), False);
+        if FSocket <> nil then begin
+          FSocket.Connect;
+        end;
+
+      end;
+
+      // Converte a nossa mensagem para binário
+      LMsg := TEncoding.UTF8.GetBytes(edtTexto.Text);
+
+      // Envia o texto binario através do client socket.
+      FSocket.SendData(LMsg);
+      // Exibe a mensagem enviada no nosso Memo.
+      memHistorico.Lines.Add('Você: '+edtTexto.Text);
+      memHistorico.GoToTextEnd;
+      edtTexto.Text := '';
+    Except
+      On E:Exception do begin
+        // ERRO: notifica usuario sobre o erro e avanca
+        memHistorico.Lines.Add('Erro: '+E.Message);
+        memHistorico.GoToTextEnd;
+        // Libera o socket na memória.
+        {$IFDEF ANDROID}
+          FSocket.DisposeOf;
+          FSocket := nil;
+        {$ELSE}
+          FreeAndNil(FSocket);
+        {$ENDIF}
+      end;
+   End;
+
+end;
+procedure TfrmChat.btnServidorClick(Sender: TObject);
+begin
+
+  // Se nenhum device foi selecionado da lista
+  // para a conexão
+  if cbDispositivo.ItemIndex < 0 then begin
+    ShowMessage('Escolha um dispositivo.');
+    btnServidor.IsPressed := False; // Evita bug ao clicar novamente
+    exit; // Para de executar o evento
+  end;
+
+  // Se botao esta pressionado (afundado)
+  // inicia o servidor
+  if btnServidor.IsPressed then begin
+
+    try
+
+      //  Cria a Thread mas não a inicia já
+      FThreadServidor := TServiceThread.Create(true);
+
+      // Cria socket do servidor baseado no nome e GUID do servico.
+      FThreadServidor.FServerSocket := frmPrincipal
+                                        .Bluetooth1
+                                        .CreateServerSocket(ChatServiceName
+                                                              ,StringToGUID(ChatGUI)
+                                                              ,False);
+      // Atribui TMEMO para saida de dados
+      FThreadServidor.FDisplay := memHistorico;
+
+      // Nome do dispositivo para exibir as mensagens
+      FThreadServidor.FNomeDispositivo := cbDispositivo.Items[cbDispositivo.ItemIndex];
+
+      // Inicia a escuta do servidor para conexões
+      FThreadServidor.Start;
+
+      // Ajusta os componentes do formulário
+      btnServidor.Text := 'Parar servidor';
+      memHistorico.Lines.Add('[SERVIDOR INICIADO]');
+      cbDispositivo.Enabled := False;
+
+    Except
+      // Se der erro
+      On E:Exception do begin
+
+        // ERRO: notifica usuario e ajusta componentes do formulario
+        memHistorico.Lines.Add(E.Message);
+        memHistorico.GoToTextEnd;
+        btnServidor.Text := 'Iniciar Servidor';
+        btnServidor.IsPressed := False;
+        cbDispositivo.Enabled := True;
+
+      end;
+    end;
+  end
+  // Se não estiver mais pressionado
+  else begin
+
+    // Se a Thread já não tiver sido encerrada
+    if FThreadServidor <> nil then begin
+
+      // Flag da thread para terminar e interromper servidor
+      FThreadServidor.Terminate;
+      // Aguarda pela finalização da Thread
+      FThreadServidor.WaitFor;
+
+      // Libera a Thread da memória
+      {$IFDEF ANDROID}
+        FThreadServidor.DisposeOf;
+        FThreadServidor := nil;
+      {$ELSE}
+        FreeAndNil(FThreadServidor);
+      {$ENDIF}
+
+      // Notifica o usuário e ajusta componentes
+      memHistorico.Lines.Add('[SERVIDOR INTERROMPIDO]');
+      memHistorico.GoToTextEnd;
+      btnServidor.Text := 'Iniciar Servidor';
+      btnServidor.IsPressed := False;
+      cbDispositivo.Enabled := True;
+    end;
+  end;
+end;
 
 procedure TfrmChat.Button1Click(Sender: TObject);
 begin
@@ -103,6 +235,97 @@ begin
   for var LDispositivo in frmPrincipal.Bluetooth1.PairedDevices do begin
     cbDispositivo.Items.Add(LDispositivo.DeviceName);
   end;
+end;
+
+{ TServiceThread }
+
+constructor TServiceThread.Create(ACreateSuspended: Boolean);
+begin
+  // Herda do construtor da classe Pai
+  inherited;
+end;
+
+destructor TServiceThread.Destroy;
+begin
+
+  //  Libera as classes e atributos da memória
+  //  do device de acordo com o tipo
+  {$IFDEF ANDROID}
+    FSocket.DisposeOf;
+    FServerSocket.DisposeOf;
+    FSocket := nil;
+    FServerSocket := nil;
+  {$ELSE}
+    FSocket.Free;
+    FServerSocket.Free;
+  {$ENDIF}
+
+  // Herda do destrutor da classe Pai
+  inherited;
+end;
+
+procedure TServiceThread.Execute;
+var
+  // Variável que recebera a conversão dos dados
+  Msg: string;
+  // Variável que recebe os dados binários de outro device
+  LDados: TBytes;
+begin
+  // Repete até que não tenhamos setado como True
+  // o fim da Thread
+  while not Terminated do
+    try
+      // Libera o socket atual
+      FSocket := nil;
+
+      // Cria uma nova conexão do socket
+      // pois ela pode mudar
+      while not Terminated and (FSocket = nil) do
+        FSocket := FServerSocket.Accept(100);
+
+      // Caso a conexão seja feita fazemos a leitura dos dados
+      if(FSocket <> nil) then begin
+
+        // Repete até que não tenhamos setado como True
+        // o fim da Thread
+        while not Terminated do begin
+
+          // Recebe os dados da leitura do socket
+          LDados := FSocket.ReceiveData;
+
+          // Verifica se os dados foram recebidos
+          // e existe um display para mostrar
+          if (Length(LDados) > 0) and (FDisplay <> nil) then
+
+            // Sincroniza com a Thread Principal
+            // e adiciona a mensagem no Memo
+            Synchronize(procedure begin
+                FDisplay.Lines.Add(FNomeDispositivo+': '+TEncoding.UTF8.GetString(LDados));
+                FDisplay.GoToTextEnd;
+            end);
+
+          // Espera 0,1s para executar os procedimentos novamente
+          Sleep(100);
+
+        end;
+      end;
+    except
+
+      // Em caso de ocorrer qualquer erro
+      on E : Exception do
+      begin
+        // ERRO: notifica usuario na thread principal, apenas se possui um TMEMO para mostrar
+        if FDisplay <> nil then begin
+          Msg := E.Message;
+          Synchronize(procedure
+            begin
+              FDisplay.Lines.Add('Servidor encerrado: ' + Msg);
+              FDisplay.GoToTextEnd;
+            end);
+        end;
+      end;
+    end;
+
 end;
 
 end.
