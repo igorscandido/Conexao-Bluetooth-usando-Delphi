@@ -140,6 +140,7 @@ object frmWindows: TfrmWindows
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'Navegar'
+      OnClick = btnNavegarClick
     end
     object btnMonitor: TButton
       Align = Client
@@ -154,6 +155,7 @@ object frmWindows: TfrmWindows
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Monitor Off'
+      OnClick = btnMonitorClick
     end
     object btnCalculadora: TButton
       Align = Client
@@ -168,6 +170,7 @@ object frmWindows: TfrmWindows
       Size.PlatformDefault = False
       TabOrder = 2
       Text = 'Calculadora'
+      OnClick = btnCalculadoraClick
     end
     object btnPC: TButton
       Align = Client
@@ -182,6 +185,7 @@ object frmWindows: TfrmWindows
       Size.PlatformDefault = False
       TabOrder = 3
       Text = 'Desligar PC'
+      OnClick = btnPCClick
     end
   end
 end

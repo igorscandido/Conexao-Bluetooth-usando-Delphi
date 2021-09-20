@@ -6,7 +6,12 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, System.Bluetooth;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo,
+  // Bibliotecas exclusivas se o sistema for Windows
+  {$IFDEF WIN32}
+   Winapi.Shellapi, FMX.Platform.Win, winapi.windows,
+  {$ENDIF}
+  System.Bluetooth;
 
 type
 
@@ -55,6 +60,10 @@ type
     procedure Button2Click(Sender: TObject);
     procedure cbDispositivoChange(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnNavegarClick(Sender: TObject);
+    procedure btnMonitorClick(Sender: TObject);
+    procedure btnCalculadoraClick(Sender: TObject);
+    procedure btnPCClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,6 +94,30 @@ uses
   frmPrincipalU;
 
 {$R *.fmx}
+
+procedure TfrmWindows.btnCalculadoraClick(Sender: TObject);
+begin
+  // Envia via socket o comando referente a função desejada
+  Enviar('[CALCULADORA]');
+end;
+
+procedure TfrmWindows.btnMonitorClick(Sender: TObject);
+begin
+  // Envia via socket o comando referente a função desejada
+  Enviar('[MONITOROFF]');
+end;
+
+procedure TfrmWindows.btnNavegarClick(Sender: TObject);
+begin
+  // Envia via socket o comando referente a função desejada
+  Enviar('[ELETROWEB]');
+end;
+
+procedure TfrmWindows.btnPCClick(Sender: TObject);
+begin
+  // Envia via socket o comando referente a função desejada
+  Enviar('[PCOFF]');
+end;
 
 procedure TfrmWindows.Button2Click(Sender: TObject);
 begin
@@ -226,33 +259,192 @@ end;
 destructor TServiceThread.Destroy;
 begin
 
+  //  Libera o socket da memória
+  {$IFDEF ANDROID}
+    FSocket.DisposeOf;
+    FServerSocket.DisposeOf;
+    FSocket := nil;
+    FServerSocket := nil;
+  {$ELSE}
+    FSocket.Free;
+    FServerSocket.Free;
+  {$ENDIF}
+
   inherited;
 end;
 
 procedure TServiceThread.Executar(const Programa: string);
 begin
 
+// Se o device for sistema Windows.
+{$IFDEF WIN32}
+  Try
+    // Executa o programa .exe da constante Programa
+  	ShellExecute(WindowHandleToPlatform(Application.MainForm.Handle).Wnd,
+                                        nil,
+                                        PChar(Programa),
+                                        nil,
+                                        nil,
+                                        1);
+  except
+    // Se der qualquer erro mostra no memo
+    On E: Exception Do begin
+      if FDisplay <> nil then
+        FDisplay.Lines.Add('Erro ao tentar executar programa: '+E.Message);
+    end;
+  end;
+// Se a plataforma for Linux, Android, IOS
+{$ELSE}
+  Showmessage('Sistema operacional não suportado');
+{$ENDIF}
+
 end;
 
 procedure TServiceThread.Execute;
+var
+  // Variável que recebera a conversão dos dados
+  Msg: string;
+  // Variável que recebe os dados binários de outro device
+  LDados: TBytes;
 begin
-  inherited;
+
+  // Repete até que não tenhamos setado como True
+  // o fim da Thread
+  while not Terminated do
+    try
+      // Libera o socket atual
+      FSocket := nil;
+
+      // Cria uma nova conexão do socket
+      // pois ela pode mudar
+      while not Terminated and (FSocket = nil) do
+        FSocket := FServerSocket.Accept(100);
+
+      // Caso a conexão seja feita fazemos a leitura dos dados
+      if(FSocket <> nil) then begin
+
+        // Repete até que não tenhamos setado como True
+        // o fim da Thread
+        while not Terminated do begin
+
+          // Recebe os dados da leitura do socket
+          LDados := FSocket.ReceiveData;
+
+
+          // Converte de Bytes para Texto (String)
+          Msg := TEncoding.UTF8.GetString(LDados);
+
+          // Chama a função que carrega os dados
+          if Msg='[ELETROWEB]' then
+            Navegar('https://www.eletromococa.com.br/');
+
+          // Chama a função que desliga o monitor do PC
+          if Msg='[MONITOROFF]' then
+            MonitorOff;
+
+          // Chama a função que desliga computador
+          if Msg='[PCOFF]' then
+            PCOff;
+          // Chama a função que executa calculadora
+          if Msg='[CALCULADORA]' then
+            Executar('C:\Windows\System32\calc.exe');
+
+
+          // Verifica se os dados foram recebidos
+          // e existe um display para mostrar
+          if (Length(LDados) > 0) and (FDisplay <> nil) then
+
+            // Sincroniza com a Thread Principal
+            // e adiciona a mensagem no Memo
+            Synchronize(procedure begin
+                FDisplay.Lines.Add(FNomeDispositivo+': '+TEncoding.UTF8.GetString(LDados));
+                FDisplay.GoToTextEnd;
+            end);
+
+          // Espera 0,1s para executar os procedimentos novamente
+          Sleep(100);
+
+        end;
+      end;
+    except
+
+      // Em caso de ocorrer qualquer erro
+      on E : Exception do
+      begin
+        // ERRO: notifica usuario na thread principal, apenas se possui um TMEMO para mostrar
+        if FDisplay <> nil then begin
+          Msg := E.Message;
+          Synchronize(procedure
+            begin
+              FDisplay.Lines.Add('Servidor encerrado: ' + Msg);
+              FDisplay.GoToTextEnd;
+            end);
+        end;
+      end;
+    end;
 
 end;
 
 procedure TServiceThread.MonitorOff;
 begin
 
+// Se a plataforma for Windows executa.
+{$IFDEF WIN32}
+  try
+    // Executa no terminal a função de desligar o monitor
+    SendMessage(WindowHandleToPlatform(Application.MainForm.Handle).Wnd, 274, SC_MONITORPOWER, 2)
+  except
+    On E:Exception do
+      ShowMessage('Não foi possivel desligar o monitor: '+E.Message);
+  end;
+// Se a plataforma for Android, iOS, MacOS ou Linux mostra um aviso.
+{$ELSE}
+  Showmessage('Sistema operacional não suportado');
+{$ENDIF}
+
 end;
 
 procedure TServiceThread.Navegar(const URL: String);
 begin
-
+// Se a plataforma for Windows executa.
+{$IFDEF WIN32}
+  Try
+    // Executa a função que abre o navegador no link
+    ShellExecute(WindowHandleToPlatform(Application.MainForm.Handle).Wnd,
+                                        nil,
+                                        PChar(URL),
+                                        nil,
+                                        nil,
+                                        1);
+  except
+    On E: Exception Do begin
+      if FDisplay <> nil then
+        FDisplay.Lines.Add('Erro ao tentar carregar site: '+E.Message);
+    end;
+  end;
+// Se a plataforma for Android, iOS, MacOS ou Linux mostra um aviso.
+{$ELSE}
+  Showmessage('Sistema operacional não suportado');
+{$ENDIF}
 end;
 
 procedure TServiceThread.PCOff;
 begin
-
+// Se a plataforma for Windows executa.
+{$IFDEF WIN32}
+  Try
+    // Executa a função no Shell para desligar o PC
+    WinExec(PAnsiChar('cmd.exe /c shutdown -s -f -t 10'), sw_normal);
+  except
+    On E: Exception Do begin
+      if FDisplay <> nil then
+        FDisplay.Lines.Add('Erro ao tentar desligar o computador: '+E.Message);
+    end;
+  end;
+// Se a plataforma for Android, iOS, MacOS ou Linux mostra um aviso.
+{$ELSE}
+  Showmessage('Sistema operacional não suportado');
+{$ENDIF}
 end;
 
 end.
